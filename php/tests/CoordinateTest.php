@@ -13,4 +13,11 @@ class CoordinateTest extends TestCase
         $coordinate = new Coordinate(2, 0);
         $this->assertTrue($coordinate->x() === 2);
     }
+
+    /** @test */
+    public function should_return_same_y_coordinate()
+    {
+        $coordinate = new Coordinate(2, 4);
+        $this->assertTrue($coordinate->y() === 4);
+    }
 }
