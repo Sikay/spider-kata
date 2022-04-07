@@ -1,6 +1,6 @@
 <?php
 
-namespace KataTemplate;
+namespace SpiderKata;
 
 class KataTemplate
 {
