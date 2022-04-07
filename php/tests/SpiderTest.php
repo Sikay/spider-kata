@@ -16,6 +16,7 @@ class SpiderTest extends TestCase
         $this->assertTrue($coordinate->equals($spider->position()));
     }
 
+    /** @test */
     public function should_move_to_another_coordinate()
     {
         $coordinate = new Coordinate(1, 3);

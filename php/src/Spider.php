@@ -15,4 +15,9 @@ class Spider
     {
         return $this->coordinate;
     }
+
+    public function move(Coordinate $coordinate)
+    {
+        $this->coordinate = $coordinate;
+    }
 }
