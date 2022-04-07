@@ -2,7 +2,7 @@
 
 namespace SpiderKata\Test;
 
-use SpiderKata\KataTemplate;
+use SpiderKata\Coordinate;
 use PHPUnit\Framework\TestCase;
 
 class CoordinateTest extends TestCase
