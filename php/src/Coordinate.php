@@ -22,4 +22,12 @@ class Coordinate
     {
         return $this->y;
     }
+
+    public function equals(Coordinate $coordinate): bool
+    {
+        if ($this->x === $coordinate->x && $this->y === $coordinate->y) {
+            return true;
+        }
+        return false;
+    }
 }
