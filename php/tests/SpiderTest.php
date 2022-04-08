@@ -35,4 +35,12 @@ class SpiderTest extends TestCase
         $newCoordinate = new Coordinate(-2, 3);
         $spider->move($newCoordinate);
     }
+
+    /** @test */
+    public function should_not_create_when_exceed_limit()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $coordinate = new Coordinate(-2, 3);
+        $spider = new Spider($coordinate);
+    }
 }
