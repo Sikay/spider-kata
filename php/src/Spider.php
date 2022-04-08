@@ -16,12 +16,10 @@ class Spider
         return $this->coordinate;
     }
 
-    public function move(Coordinate $coordinate)
+    public function move(Coordinate $coordinate): void
     {
         $spiderWeb = new SpiderWeb();
-        if($spiderWeb->exceedLimit($coordinate)) {
-            throw new \InvalidArgumentException('Spider can not move to this coordinate');
-        } else {
+        if(!$spiderWeb->exceedLimit($coordinate)) {
             $this->coordinate = $coordinate;
         }
     }
