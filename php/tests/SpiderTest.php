@@ -21,11 +21,12 @@ class SpiderTest extends TestCase
     /** @test */
     public function should_move_to_another_coordinate()
     {
+        $expectedCoordinate = new Coordinate(2, 3);
         $coordinate = new Coordinate(1, 3);
         $spiderWeb = new SpiderWeb();
         $spider = new Spider($spiderWeb, $coordinate);
-        $newCoordinate = new Coordinate(2, 3);
-        $spider->move($newCoordinate);
+        $movement = 'W';
+        $spider->move($movement);
         $this->assertTrue($newCoordinate->equals($spider->position()));
     }
 
@@ -36,8 +37,8 @@ class SpiderTest extends TestCase
         $coordinate = new Coordinate(1, 3);
         $spiderWeb = new SpiderWeb();
         $spider = new Spider($spiderWeb, $coordinate);
-        $newCoordinate = new Coordinate(-2, 3);
-        $spider->move($newCoordinate);
+        $movement = 'W';
+        $spider->move($movement);
     }
 
     /** @test */
