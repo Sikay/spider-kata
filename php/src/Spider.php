@@ -29,6 +29,10 @@ class Spider
             $destinationCoordinate = new Coordinate($this->position()->x() + 1, $this->position()->y());
         }
 
+        if (strtolower($movement) === 'a') {
+            $destinationCoordinate = new Coordinate($this->position()->x() - 1, $this->position()->y());
+        }
+
         $this->spiderWeb->exceedLimit($destinationCoordinate);
         $this->coordinate = $destinationCoordinate;
     }
