@@ -49,4 +49,16 @@ class SpiderTest extends TestCase
         $spiderWeb = new SpiderWeb();
         $spider = new Spider($spiderWeb, $coordinate);
     }
+
+    /** @test */
+    public function should_move_to_right_coordinate()
+    {
+        $expectedCoordinate = new Coordinate(2, 3);
+        $coordinate = new Coordinate(1, 3);
+        $spiderWeb = new SpiderWeb();
+        $spider = new Spider($spiderWeb, $coordinate);
+        $movement = 'D';
+        $spider->move($movement);
+        $this->assertTrue($expectedCoordinate->equals($spider->position()));
+    }
 }
