@@ -19,9 +19,13 @@ class Spider
         return $this->coordinate;
     }
 
-    public function move(Coordinate $coordinate): void
+    public function move(string $movement): void
     {
-        $this->spiderWeb->exceedLimit($coordinate);
-        $this->coordinate = $coordinate;
+        if (strtolower($movement) === 'w') {
+            $destinationCoordinate = new Coordinate($this->position()->x(), $this->position()->y() + 1);
+        }
+
+        $this->spiderWeb->exceedLimit($destinationCoordinate);
+        $this->coordinate = $destinationCoordinate;
     }
 }
