@@ -31,4 +31,12 @@ class SpiderWebTest extends TestCase
         $spiderWeb = new SpiderWeb();
         $this->assertTrue($spiderWeb->exceedLimit($coordinate));
    }
+
+   /** @test */
+   public function should_exceed_the_limit_x_with_minus_value_coordinate()
+   {
+        $coordinate = new Coordinate(-1, 3);
+        $spiderWeb = new SpiderWeb();
+        $this->assertTrue($spiderWeb->exceedLimit($coordinate));
+   }
 }
