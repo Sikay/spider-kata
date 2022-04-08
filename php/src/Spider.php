@@ -18,6 +18,11 @@ class Spider
 
     public function move(Coordinate $coordinate)
     {
-        $this->coordinate = $coordinate;
+        $spiderWeb = new SpiderWeb();
+        if($spiderWeb->exceedLimit($coordinate)) {
+            throw new \InvalidArgumentException('Spider can not move to this coordinate');
+        } else {
+            $this->coordinate = $coordinate;
+        }
     }
 }

@@ -25,4 +25,14 @@ class SpiderTest extends TestCase
         $spider->move($newCoordinate);
         $this->assertTrue($newCoordinate->equals($spider->position()));
     }
+
+    /** @test */
+    public function should_can_not_exceed_limit_when_move()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $coordinate = new Coordinate(1, 3);
+        $spider = new Spider($coordinate);
+        $newCoordinate = new Coordinate(-2, 3);
+        $spider->move($newCoordinate);
+    }
 }
