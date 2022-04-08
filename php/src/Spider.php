@@ -22,8 +22,7 @@ class Spider
 
     public function move(Coordinate $coordinate): void
     {
-        $spiderWeb = new SpiderWeb();
-        if(!$spiderWeb->exceedLimit($coordinate)) {
+        if(!$this->spiderWeb->exceedLimit($coordinate)) {
             $this->coordinate = $coordinate;
         }
     }
