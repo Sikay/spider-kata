@@ -11,25 +11,26 @@ class SpiderWeb
 
     public function exceedLimit(Coordinate $coordinate): bool
     {
-        if (self::exceedWidthLimit($coordinate->x()) || self::exceedHeightLimit($coordinate->y())) {
-            return true;
+        try {
+            self::exceedWidthLimit($coordinate->x());
+            self::exceedHeightLimit($coordinate->y());
+        }catch (\InvalidArgumentException $exception) {
+            throw new \InvalidArgumentException($exception->getMessage());
         }
         return false;
     }
 
-    private static function exceedWidthLimit(int $width): bool
+    private static function exceedWidthLimit(int $width): void
     {
         if ($width > self::MAX_WITDH || $width < self::MIN_WITDH) {
-            return true;
+            throw new \InvalidArgumentException('Spider can not move to this coordinate');
         }
-        return false;
     }
 
-    private static function exceedHeightLimit(int $height): bool
+    private static function exceedHeightLimit(int $height): void
     {
         if ($height > self::MAX_HEIGHT || $height < self::MIN_HEIGHT) {
-            return true;
+            throw new \InvalidArgumentException('Spider can not move to this coordinate');
         }
-        return false;
     }
 }
