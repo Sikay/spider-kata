@@ -2,10 +2,13 @@
 
 namespace SpiderKata;
 
-class Spider
+class SpiderGame
 {
-    public function isGameFinish(): bool
+    public function isGameFinish(Coordinate $coordinateSpiderBot, Coordinate $coordinateSpiderPlayer): bool
     {
-        return true;
+        if ($coordinateSpiderBot->equals($coordinateSpiderPlayer)) {
+            return true;
+        }
+        return false;
     }
 }

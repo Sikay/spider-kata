@@ -2,13 +2,14 @@
 
 namespace SpiderKata\Test;
 
-use SpiderKata\Spider;
+use SpiderKata\SpiderGame;
 use SpiderKata\SpiderWeb;
 use SpiderKata\Coordinate;
 use PHPUnit\Framework\TestCase;
 
-class SpiderTest extends TestCase
+class SpiderGameTest extends TestCase
 {
+    /** @test */
     public function should_finish_game_if_both_spiders_stay_at_the_same_coordinate(): void
     {
         $spiderGame = new SpiderGame();
@@ -17,11 +18,12 @@ class SpiderTest extends TestCase
         $this->assertTrue($spiderGame->isGameFinish($coordinateSpiderBot, $coordinateSpiderPlayer));
     }
 
+    /** @test */
     public function should_not_finish_game_if_both_spiders_stay_at_diferent_coordinate(): void
     {
         $spiderGame = new SpiderGame();
         $coordinateSpiderBot = new Coordinate(1, 3);
         $coordinateSpiderPlayer = new Coordinate(3, 3);
-        $this->assertTrue($spiderGame->isGameFinish($coordinateSpiderBot, $coordinateSpiderPlayer));
+        $this->assertFalse($spiderGame->isGameFinish($coordinateSpiderBot, $coordinateSpiderPlayer));
     }
 }
