@@ -10,9 +10,8 @@ class Spider
     public function __construct(SpiderWeb $spiderWeb, Coordinate $coordinate)
     {
         $this->spiderWeb = $spiderWeb;
-        if(!$spiderWeb->exceedLimit($coordinate)) {
-            $this->coordinate = $coordinate;
-        }
+        $spiderWeb->exceedLimit($coordinate);
+        $this->coordinate = $coordinate;
     }
 
     public function position()
@@ -22,8 +21,7 @@ class Spider
 
     public function move(Coordinate $coordinate): void
     {
-        if(!$this->spiderWeb->exceedLimit($coordinate)) {
-            $this->coordinate = $coordinate;
-        }
+        $this->spiderWeb->exceedLimit($coordinate);
+        $this->coordinate = $coordinate;
     }
 }

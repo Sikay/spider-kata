@@ -9,15 +9,10 @@ class SpiderWeb
     private const MIN_HEIGHT = 0;
     private const MIN_WITDH = 0;
 
-    public function exceedLimit(Coordinate $coordinate): bool
+    public function exceedLimit(Coordinate $coordinate): void
     {
-        try {
-            self::exceedWidthLimit($coordinate->x());
-            self::exceedHeightLimit($coordinate->y());
-        }catch (\InvalidArgumentException $exception) {
-            throw new \InvalidArgumentException($exception->getMessage());
-        }
-        return false;
+        self::exceedWidthLimit($coordinate->x());
+        self::exceedHeightLimit($coordinate->y());
     }
 
     private static function exceedWidthLimit(int $width): void
