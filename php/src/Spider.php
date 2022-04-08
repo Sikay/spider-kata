@@ -21,22 +21,26 @@ class Spider
 
     public function move(string $movement): void
     {
+        $x = $this->position()->x();
+        $y = $this->position()->y();
+
         if (strtolower($movement) === 'w') {
-            $destinationCoordinate = new Coordinate($this->position()->x(), $this->position()->y() + 1);
+            $y = $y + 1;
         }
 
         if (strtolower($movement) === 's') {
-            $destinationCoordinate = new Coordinate($this->position()->x(), $this->position()->y() - 1);
+            $y = $y - 1;
         }
 
         if (strtolower($movement) === 'd') {
-            $destinationCoordinate = new Coordinate($this->position()->x() + 1, $this->position()->y());
+            $x = $x + 1;
         }
 
         if (strtolower($movement) === 'a') {
-            $destinationCoordinate = new Coordinate($this->position()->x() - 1, $this->position()->y());
+            $x = $x - 1;
         }
 
+        $destinationCoordinate = new Coordinate($x, $y);
         $this->spiderWeb->exceedLimit($destinationCoordinate);
         $this->coordinate = $destinationCoordinate;
     }
