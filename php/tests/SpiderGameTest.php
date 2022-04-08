@@ -26,4 +26,14 @@ class SpiderGameTest extends TestCase
         $coordinateSpiderPlayer = new Coordinate(3, 3);
         $this->assertFalse($spiderGame->isGameFinish($coordinateSpiderBot, $coordinateSpiderPlayer));
     }
+
+    /** @test */
+    public function should_finish_game_if_turns_are_over(): void
+    {
+        $spiderGame = new SpiderGame();
+        $currentTurn = $spiderGame->maxTurn();
+        $coordinateSpiderBot = new Coordinate(1, 3);
+        $coordinateSpiderPlayer = new Coordinate(3, 3);
+        $this->assertTrue($spiderGame->isGameFinish($coordinateSpiderBot, $coordinateSpiderPlayer, $currentTurn));
+    }
 }
