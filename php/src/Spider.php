@@ -7,6 +7,11 @@ class Spider
     private $coordinate;
     private $spiderWeb;
 
+    private const UP = 'w';
+    private const DOWN = 's';
+    private const RIGHT = 'd';
+    private const LEFT = 'a';
+
     public function __construct(SpiderWeb $spiderWeb, Coordinate $coordinate)
     {
         $this->spiderWeb = $spiderWeb;
@@ -24,19 +29,19 @@ class Spider
         $x = $this->position()->x();
         $y = $this->position()->y();
 
-        if (strtolower($movement) === 'w') {
+        if (strtolower($movement) === self::UP) {
             $y = $y + 1;
         }
 
-        if (strtolower($movement) === 's') {
+        if (strtolower($movement) === self::DOWN) {
             $y = $y - 1;
         }
 
-        if (strtolower($movement) === 'd') {
+        if (strtolower($movement) === self::RIGHT) {
             $x = $x + 1;
         }
 
-        if (strtolower($movement) === 'a') {
+        if (strtolower($movement) === self::LEFT) {
             $x = $x - 1;
         }
 
