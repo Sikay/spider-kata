@@ -23,4 +23,12 @@ class SpiderWebTest extends TestCase
         $spiderWeb = new SpiderWeb();
         $this->assertTrue($spiderWeb->exceedLimit($coordinate));
    }
+
+   /** @test */
+   public function should_exceed_the_limit_y_coordinate()
+   {
+        $coordinate = new Coordinate(2, 6);
+        $spiderWeb = new SpiderWeb();
+        $this->assertTrue($spiderWeb->exceedLimit($coordinate));
+   }
 }
