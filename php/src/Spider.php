@@ -25,6 +25,10 @@ class Spider
             $destinationCoordinate = new Coordinate($this->position()->x(), $this->position()->y() + 1);
         }
 
+        if (strtolower($movement) === 's') {
+            $destinationCoordinate = new Coordinate($this->position()->x(), $this->position()->y() - 1);
+        }
+
         if (strtolower($movement) === 'd') {
             $destinationCoordinate = new Coordinate($this->position()->x() + 1, $this->position()->y());
         }

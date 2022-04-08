@@ -73,4 +73,16 @@ class SpiderTest extends TestCase
         $spider->move($movement);
         $this->assertTrue($expectedCoordinate->equals($spider->position()));
     }
+
+    /** @test */
+    public function should_move_to_down_coordinate()
+    {
+        $expectedCoordinate = new Coordinate(1, 2);
+        $coordinate = new Coordinate(1, 3);
+        $spiderWeb = new SpiderWeb();
+        $spider = new Spider($spiderWeb, $coordinate);
+        $movement = 'S';
+        $spider->move($movement);
+        $this->assertTrue($expectedCoordinate->equals($spider->position()));
+    }
 }
