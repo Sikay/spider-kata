@@ -12,7 +12,8 @@ class SpiderTest extends TestCase
     public function should_create_spider_from_coordinate()
     {
         $coordinate = new Coordinate(1, 3);
-        $spider = new Spider($coordinate);
+        $spiderWeb = new SpiderWeb();
+        $spider = new Spider($spiderWeb, $coordinate);
         $this->assertTrue($coordinate->equals($spider->position()));
     }
 
@@ -20,7 +21,8 @@ class SpiderTest extends TestCase
     public function should_move_to_another_coordinate()
     {
         $coordinate = new Coordinate(1, 3);
-        $spider = new Spider($coordinate);
+        $spiderWeb = new SpiderWeb();
+        $spider = new Spider($spiderWeb, $coordinate);
         $newCoordinate = new Coordinate(2, 3);
         $spider->move($newCoordinate);
         $this->assertTrue($newCoordinate->equals($spider->position()));
@@ -31,7 +33,8 @@ class SpiderTest extends TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
         $coordinate = new Coordinate(1, 3);
-        $spider = new Spider($coordinate);
+        $spiderWeb = new SpiderWeb();
+        $spider = new Spider($spiderWeb, $coordinate);
         $newCoordinate = new Coordinate(-2, 3);
         $spider->move($newCoordinate);
     }
@@ -41,6 +44,7 @@ class SpiderTest extends TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
         $coordinate = new Coordinate(-2, 3);
-        $spider = new Spider($coordinate);
+        $spiderWeb = new SpiderWeb();
+        $spider = new Spider($spiderWeb, $coordinate);
     }
 }
