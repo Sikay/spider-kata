@@ -8,7 +8,10 @@ class Spider
 
     public function __construct(Coordinate $coordinate)
     {
-        $this->coordinate = $coordinate;
+        $spiderWeb = new SpiderWeb();
+        if(!$spiderWeb->exceedLimit($coordinate)) {
+            $this->coordinate = $coordinate;
+        }
     }
 
     public function position()
