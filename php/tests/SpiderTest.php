@@ -3,6 +3,7 @@
 namespace SpiderKata\Test;
 
 use SpiderKata\Spider;
+use SpiderKata\SpiderWeb;
 use SpiderKata\Coordinate;
 use PHPUnit\Framework\TestCase;
 

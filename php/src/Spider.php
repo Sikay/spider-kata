@@ -5,10 +5,11 @@ namespace SpiderKata;
 class Spider
 {
     private $coordinate;
+    private $spiderWeb;
 
-    public function __construct(Coordinate $coordinate)
+    public function __construct(SpiderWeb $spiderWeb, Coordinate $coordinate)
     {
-        $spiderWeb = new SpiderWeb();
+        $this->spiderWeb = $spiderWeb;
         if(!$spiderWeb->exceedLimit($coordinate)) {
             $this->coordinate = $coordinate;
         }
