@@ -9,6 +9,16 @@ class SpiderWeb
     private const MIN_HEIGHT = 0;
     private const MIN_WITDH = 0;
 
+    public function maxWitdh(): int
+    {
+        return self::MAX_WITDH;
+    }
+
+    public function maxHeight(): int
+    {
+        return self::MAX_HEIGHT;
+    }
+
     public function exceedLimit(Coordinate $coordinate): void
     {
         self::exceedWidthLimit($coordinate->x());

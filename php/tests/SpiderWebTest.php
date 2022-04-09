@@ -66,4 +66,16 @@ class SpiderWebTest extends TestCase
         $spiderWeb = new SpiderWeb();
         $this->assertEquals($spiderWeb->validMovement($coordinate), $expectedOutput, '\$canonicalize = true', 0.0, 10, true);
    }
+
+   /** @test */
+   public function should_return_valid_movements_when_stay_at_limits()
+   {
+        $spiderWeb = new SpiderWeb();
+        $expectedOutput = [
+            's' => new Coordinate($spiderWeb->maxWitdh(), $spiderWeb->maxHeight() - 1),
+            'a' => new Coordinate($spiderWeb->maxWitdh() - 1, $spiderWeb->maxHeight()),
+        ];
+        $coordinate = new Coordinate($spiderWeb->maxWitdh(), $spiderWeb->maxHeight());
+        $this->assertEquals($spiderWeb->validMovement($coordinate), $expectedOutput, '\$canonicalize = true', 0.0, 10, true);
+   }
 }
