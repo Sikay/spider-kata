@@ -52,4 +52,18 @@ class SpiderWebTest extends TestCase
         $spiderWeb = new SpiderWeb();
         $spiderWeb->exceedLimit($coordinate);
    }
+
+   /** @test */
+   public function should_return_valid_movements()
+   {
+        $expectedOutput = [
+            'w' => new Coordinate(2, 3),
+            's' => new Coordinate(2, 1),
+            'd' => new Coordinate(3, 2),
+            'a' => new Coordinate(1, 2),
+        ];
+        $coordinate = new Coordinate(2, 2);
+        $spiderWeb = new SpiderWeb();
+        $this->assertEquals($spiderWeb->validMovement($coordinate), $expectedOutput, '\$canonicalize = true', 0.0, 10, true);
+   }
 }
