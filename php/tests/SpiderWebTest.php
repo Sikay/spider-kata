@@ -52,13 +52,4 @@ class SpiderWebTest extends TestCase
         $spiderWeb = new SpiderWeb();
         $spiderWeb->exceedLimit($coordinate);
    }
-
-   /** @test */
-   public function should_return_distance_between_two_coordinates()
-   {
-        $coordinate = new Coordinate(0, 3);
-        $secondCoordinate = new Coordinate(3, 3);
-        $spiderWeb = new SpiderWeb();
-        $this->assertTrue($spiderWeb->distance($coordinate, $secondCoordinate) === doubleval(3));
-   }
 }

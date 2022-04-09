@@ -36,4 +36,20 @@ class CoordinateTest extends TestCase
         $secondCoordinate = new Coordinate(2, 4);
         $this->assertFalse($coordinate->equals($secondCoordinate));
     }
+
+    /** @test */
+   public function should_return_distance_between_two_coordinates()
+   {
+        $coordinate = new Coordinate(0, 3);
+        $secondCoordinate = new Coordinate(3, 3);
+        $this->assertTrue($coordinate->distance($secondCoordinate) === doubleval(3));
+   }
+
+   /** @test */
+   public function should_not_match_distance_between_two_coordinates()
+   {
+        $coordinate = new Coordinate(0, 2);
+        $secondCoordinate = new Coordinate(1, 3);
+        $this->assertFalse($coordinate->distance($secondCoordinate) === doubleval(4));
+   }
 }

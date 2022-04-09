@@ -28,9 +28,4 @@ class SpiderWeb
             throw new \InvalidArgumentException('Spider can not move to this coordinate');
         }
     }
-
-    public function distance(Coordinate $coordinate, Coordinate $secondCoordinate): float
-    {
-        return sqrt(pow($coordinate->x() - $secondCoordinate->x(), 2) + pow($coordinate->y() - $secondCoordinate->y(), 2));
-    }
 }

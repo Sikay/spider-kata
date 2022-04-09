@@ -30,4 +30,9 @@ class Coordinate
         }
         return false;
     }
+
+    public function distance(Coordinate $coordinate): float
+    {
+        return sqrt(pow($this->x() - $coordinate->x(), 2) + pow($this->y() - $coordinate->y(), 2));
+    }
 }
