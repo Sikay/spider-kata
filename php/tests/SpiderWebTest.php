@@ -56,9 +56,9 @@ class SpiderWebTest extends TestCase
    /** @test */
    public function should_return_distance_between_two_coordinates()
    {
-        $coordinate = new Coordinate(0, 2);
-        $secondCoordinate = new Coordinate(2, 0);
+        $coordinate = new Coordinate(0, 3);
+        $secondCoordinate = new Coordinate(3, 3);
         $spiderWeb = new SpiderWeb();
-        $this->assertTrue($spiderWeb->distance() === 4);
+        $this->assertTrue($spiderWeb->distance($coordinate, $secondCoordinate) === doubleval(3));
    }
 }
