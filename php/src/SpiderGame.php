@@ -56,7 +56,7 @@ class SpiderGame
 
             printf('Turno actual: ' . $currentTurn. PHP_EOL);
             for ($height = $maxHeight; $height >= 0; $height--) {
-                printf($this->createHorizontalMovement(0, $maxWitdh));
+                printf($this->createHorizontalMovement(0, $maxWitdh, $height));
                 if ($height > 0) {
                     printf(PHP_EOL);
                     printf($this->createVerticalMovement(0, $maxWitdh));
@@ -106,13 +106,13 @@ class SpiderGame
         return $verticalMovement;
     }
 
-    public function createHorizontalMovement(int $minWidth, int $maxWitdh): string
+    public function createHorizontalMovement(int $minWidth, int $maxWitdh, int $height): string
     {
         $horizontalMovement = '';
         for ($width = $minWidth; $width <= $maxWitdh; $width++) {
-            if ($this->isPlayerPosition()) {
+            if ($this->isPlayerPosition($width, $height)) {
                 $horizontalMovement .= 'P';
-            } else if ($this->isBotPosition()) {
+            } else if ($this->isBotPosition($width, $height)) {
                 $horizontalMovement .= 'B';
             } else {
                 $horizontalMovement .= 'o';
@@ -125,17 +125,17 @@ class SpiderGame
         return $horizontalMovement;
     }
 
-    private function isPlayerPosition(): bool
+    private function isPlayerPosition(int $x, int $y): bool
     {
-        if ($this->spiderPlayer->position()->x() === $width && $this->spiderPlayer->position()->y() === $height) {
+        if ($this->spiderPlayer->position()->x() === $x && $this->spiderPlayer->position()->y() === $y) {
             return true;
         }
         return false;
     }
 
-    private function isBotPosition(): bool
+    private function isBotPosition(int $x, int $y): bool
     {
-        if ($this->spiderBot->position()->x() === $width && $this->spiderBot->position()->y() === $height) {
+        if ($this->spiderBot->position()->x() === $x && $this->spiderBot->position()->y() === $y) {
             return true;
         }
         return false;
