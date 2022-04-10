@@ -45,4 +45,11 @@ class SpiderGameTest extends TestCase
         $spiderGame = new SpiderGame();
         $this->assertTrue($spiderGame->play() === 'The game is finish');
     }
+
+    /** @test */
+    public function should_return_vertical_movement(): void
+    {
+        $spiderGame = new SpiderGame();
+        $this->assertTrue($spiderGame->createVerticalMovement(0, 4) === '|   |   |   |   |   ');
+    }
 }
