@@ -81,6 +81,22 @@ class SpiderGame
         return 'The game is finish';
     }
 
+    public function gameMap(): string
+    {
+        $maxHeight = $this->spiderWeb->maxHeight();
+        $maxWitdh = $this->spiderWeb->maxWitdh();
+        $gameMap = '';
+        for ($height = $maxHeight; $height >= 0; $height--) {
+            $gameMap .= $this->createHorizontalMovement(0, $maxWitdh, $height);
+            if ($height > 0) {
+                $gameMap .= "\n" . $this->createVerticalMovement(0, $maxWitdh);
+            }
+            $gameMap .= "\n";
+        }
+        var_dump($gameMap);
+        return $gameMap;
+    }
+
     private function bestMovementByDistance(array $movementDistance): string
     {
         arsort($movementDistance);
