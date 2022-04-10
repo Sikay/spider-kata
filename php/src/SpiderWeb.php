@@ -56,4 +56,45 @@ class SpiderWeb
         }
         return $validMovement;
     }
+
+    public function show(Coordinate $playerCoordinate, Coordinate $botCoordinate): string
+    {
+        $gameMap = '';
+        for ($height = self::MAX_HEIGHT; $height >= self::MIN_HEIGHT; $height--) {
+            $gameMap .= $this->createHorizontalMovement($playerCoordinate, $botCoordinate, $height);
+            if ($height > self::MIN_HEIGHT) {
+                $gameMap .= "\n" . $this->createVerticalMovement();
+            }
+            $gameMap .= "\n";
+        }
+        return $gameMap;
+    }
+
+    private function createVerticalMovement(): string
+    {
+        $verticalMovement = '';
+        for ($width = self::MIN_WITDH; $width <= self::MAX_WITDH; $width++) {
+            $verticalMovement .= '|   ';
+        }
+        return $verticalMovement;
+    }
+
+    private function createHorizontalMovement(Coordinate $playerCoordinate, Coordinate $botCoordinate, int $height): string
+    {
+        $horizontalMovement = '';
+        for ($width = self::MIN_WITDH; $width <= self::MAX_WITDH; $width++) {
+            if ($playerCoordinate->equals(new Coordinate($width, $height))) {
+                $horizontalMovement .= 'P';
+            } else if ($botCoordinate->equals(new Coordinate($width, $height))) {
+                $horizontalMovement .= 'B';
+            } else {
+                $horizontalMovement .= 'o';
+            }
+
+            if ($width !== self::MAX_WITDH) {
+                $horizontalMovement .= ' - ';
+            }
+        }
+        return $horizontalMovement;
+    }
 }

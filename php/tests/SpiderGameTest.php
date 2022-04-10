@@ -46,28 +46,4 @@ class SpiderGameTest extends TestCase
         $this->assertTrue($spiderGame->play() === 'The game is finish');
     }
 
-    /** @test */
-    public function should_return_vertical_movement(): void
-    {
-        $spiderGame = new SpiderGame();
-        $this->assertTrue($spiderGame->createVerticalMovement(0, 4) === '|   |   |   |   |   ');
-    }
-
-    /** @test */
-    public function should_return_all_game_map(): void
-    {
-        $expectedOutput = "o - o - o - o - o" . "\n";
-        $expectedOutput .= "|   |   |   |   |   " . "\n";
-        $expectedOutput .= "o - o - o - o - o" . "\n";
-        $expectedOutput .= "|   |   |   |   |   " . "\n";
-        $expectedOutput .= "o - B - o - P - o" . "\n";
-        $expectedOutput .= "|   |   |   |   |   " . "\n";
-        $expectedOutput .= "o - o - o - o - o" . "\n";
-        $expectedOutput .= "|   |   |   |   |   " . "\n";
-        $expectedOutput .= "o - o - o - o - o" . "\n";
-        $expectedOutput .= "|   |   |   |   |   " . "\n";
-        $expectedOutput .= "o - o - o - o - o" . "\n";
-        $spiderGame = new SpiderGame();
-        $this->assertTrue($spiderGame->gameMap() === $expectedOutput);
-    }
 }

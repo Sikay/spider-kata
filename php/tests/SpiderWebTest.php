@@ -78,4 +78,24 @@ class SpiderWebTest extends TestCase
         $coordinate = new Coordinate($spiderWeb->maxWitdh(), $spiderWeb->maxHeight());
         $this->assertEquals($spiderWeb->validMovement($coordinate), $expectedOutput, '\$canonicalize = true', 0.0, 10, true);
    }
+
+   /** @test */
+   public function should_return_all_game_map(): void
+   {
+        $expectedOutput = "o - o - o - o - o" . "\n";
+        $expectedOutput .= "|   |   |   |   |   " . "\n";
+        $expectedOutput .= "o - o - o - o - o" . "\n";
+        $expectedOutput .= "|   |   |   |   |   " . "\n";
+        $expectedOutput .= "o - B - o - P - o" . "\n";
+        $expectedOutput .= "|   |   |   |   |   " . "\n";
+        $expectedOutput .= "o - o - o - o - o" . "\n";
+        $expectedOutput .= "|   |   |   |   |   " . "\n";
+        $expectedOutput .= "o - o - o - o - o" . "\n";
+        $expectedOutput .= "|   |   |   |   |   " . "\n";
+        $expectedOutput .= "o - o - o - o - o" . "\n";
+        $spiderWeb = new SpiderWeb();
+        $coordinateSpiderBot = new Coordinate(1, 3);
+        $coordinateSpiderPlayer = new Coordinate(3, 3);
+        $this->assertTrue($spiderWeb->show($coordinateSpiderPlayer, $coordinateSpiderBot) === $expectedOutput);
+   }
 }

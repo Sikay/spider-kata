@@ -51,50 +51,14 @@ class SpiderGame
             $movementDistance = $this->botDistanceByMovement();
             $this->spiderBot->move($this->bestMovementByDistance($movementDistance));
 
-            $maxHeight = $this->spiderWeb->maxHeight();
-            $maxWitdh = $this->spiderWeb->maxWitdh();
-
             printf('Turno actual: ' . $currentTurn. PHP_EOL);
-            for ($height = $maxHeight; $height >= 0; $height--) {
-                printf($this->createHorizontalMovement(0, $maxWitdh, $height));
-                if ($height > 0) {
-                    printf(PHP_EOL);
-                    printf($this->createVerticalMovement(0, $maxWitdh));
-                }
-                printf(PHP_EOL);
-            }
+            printf($this->spiderWeb->show($this->spiderPlayer->position(), $this->spiderBot->position()));
 
-            do{
-                $movementMade = false;
-                $movement = readline('Ingresa movimiento: ');
-                try {
-                    $this->spiderPlayer->move($movement);
-                    $movementMade = true;
-                } catch (\Exception $e) {
-                    printf($e->getMessage() . PHP_EOL);
-                }
-
-            } while ($movementMade === false);
+            $this->playerMovement();
 
         } while (!$this->isGameFinish($this->spiderBot->position(), $this->spiderPlayer->position(), $currentTurn));
 
         return 'The game is finish';
-    }
-
-    public function gameMap(): string
-    {
-        $maxHeight = $this->spiderWeb->maxHeight();
-        $maxWitdh = $this->spiderWeb->maxWitdh();
-        $gameMap = '';
-        for ($height = $maxHeight; $height >= 0; $height--) {
-            $gameMap .= $this->createHorizontalMovement(0, $maxWitdh, $height);
-            if ($height > 0) {
-                $gameMap .= "\n" . $this->createVerticalMovement(0, $maxWitdh);
-            }
-            $gameMap .= "\n";
-        }
-        var_dump($gameMap);
-        return $gameMap;
     }
 
     private function bestMovementByDistance(array $movementDistance): string
@@ -113,47 +77,20 @@ class SpiderGame
         return $movementDistance;
     }
 
-    public function createVerticalMovement(int $minWidth, int $maxWitdh): string
+    private function playerMovement(): void
     {
-        $verticalMovement = '';
-        for ($width = $minWidth; $width <= $maxWitdh; $width++) {
-            $verticalMovement .= '|   ';
-        }
-        return $verticalMovement;
-    }
-
-    public function createHorizontalMovement(int $minWidth, int $maxWitdh, int $height): string
-    {
-        $horizontalMovement = '';
-        for ($width = $minWidth; $width <= $maxWitdh; $width++) {
-            if ($this->isPlayerPosition($width, $height)) {
-                $horizontalMovement .= 'P';
-            } else if ($this->isBotPosition($width, $height)) {
-                $horizontalMovement .= 'B';
-            } else {
-                $horizontalMovement .= 'o';
+        do{
+            $movementMade = false;
+            $movement = readline('Ingresa movimiento (W, A, S, D): ');
+            try {
+                $this->spiderPlayer->move($movement);
+                $movementMade = true;
+            } catch (\Exception $e) {
+                printf($e->getMessage() . PHP_EOL);
             }
 
-            if ($width !== $maxWitdh) {
-                $horizontalMovement .= ' - ';
-            }
-        }
-        return $horizontalMovement;
+        } while ($movementMade === false);
     }
 
-    private function isPlayerPosition(int $x, int $y): bool
-    {
-        if ($this->spiderPlayer->position()->x() === $x && $this->spiderPlayer->position()->y() === $y) {
-            return true;
-        }
-        return false;
-    }
 
-    private function isBotPosition(int $x, int $y): bool
-    {
-        if ($this->spiderBot->position()->x() === $x && $this->spiderBot->position()->y() === $y) {
-            return true;
-        }
-        return false;
-    }
 }
