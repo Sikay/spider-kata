@@ -1,0 +1,607 @@
+Escaped mutants:
+================
+
+1) /opt/project/src/Coordinate.php:36    [M] Minus
+
+--- Original
++++ New
+@@ @@
+     }
+     public function distance(Coordinate $coordinate) : float
+     {
+-        return sqrt(pow($this->x() - $coordinate->x(), 2) + pow($this->y() - $coordinate->y(), 2));
++        return sqrt(pow($this->x() + $coordinate->x(), 2) + pow($this->y() - $coordinate->y(), 2));
+     }
+ }
+
+
+2) /opt/project/src/Coordinate.php:36    [M] IncrementInteger
+
+--- Original
++++ New
+@@ @@
+     }
+     public function distance(Coordinate $coordinate) : float
+     {
+-        return sqrt(pow($this->x() - $coordinate->x(), 2) + pow($this->y() - $coordinate->y(), 2));
++        return sqrt(pow($this->x() - $coordinate->x(), 2) + pow($this->y() - $coordinate->y(), 3));
+     }
+ }
+
+
+3) /opt/project/src/Coordinate.php:36    [M] Plus
+
+--- Original
++++ New
+@@ @@
+     }
+     public function distance(Coordinate $coordinate) : float
+     {
+-        return sqrt(pow($this->x() - $coordinate->x(), 2) + pow($this->y() - $coordinate->y(), 2));
++        return sqrt(pow($this->x() - $coordinate->x(), 2) - pow($this->y() - $coordinate->y(), 2));
+     }
+ }
+
+
+4) /opt/project/src/Coordinate.php:36    [M] DecrementInteger
+
+--- Original
++++ New
+@@ @@
+     }
+     public function distance(Coordinate $coordinate) : float
+     {
+-        return sqrt(pow($this->x() - $coordinate->x(), 2) + pow($this->y() - $coordinate->y(), 2));
++        return sqrt(pow($this->x() - $coordinate->x(), 2) + pow($this->y() - $coordinate->y(), 1));
+     }
+ }
+
+
+5) /opt/project/src/SpiderGame.php:20    [M] DecrementInteger
+
+--- Original
++++ New
+@@ @@
+     }
+     private function prepareGame() : void
+     {
+-        $botInitialCoordinate = new Coordinate(1, 3);
++        $botInitialCoordinate = new Coordinate(0, 3);
+         $playerInitialCoordinate = new Coordinate(3, 3);
+         $spiderWeb = new SpiderWeb();
+         $this->spiderWeb = $spiderWeb;
+
+
+6) /opt/project/src/SpiderGame.php:20    [M] IncrementInteger
+
+--- Original
++++ New
+@@ @@
+     }
+     private function prepareGame() : void
+     {
+-        $botInitialCoordinate = new Coordinate(1, 3);
++        $botInitialCoordinate = new Coordinate(2, 3);
+         $playerInitialCoordinate = new Coordinate(3, 3);
+         $spiderWeb = new SpiderWeb();
+         $this->spiderWeb = $spiderWeb;
+
+
+7) /opt/project/src/SpiderGame.php:20    [M] DecrementInteger
+
+--- Original
++++ New
+@@ @@
+     }
+     private function prepareGame() : void
+     {
+-        $botInitialCoordinate = new Coordinate(1, 3);
++        $botInitialCoordinate = new Coordinate(1, 2);
+         $playerInitialCoordinate = new Coordinate(3, 3);
+         $spiderWeb = new SpiderWeb();
+         $this->spiderWeb = $spiderWeb;
+
+
+8) /opt/project/src/SpiderGame.php:20    [M] IncrementInteger
+
+--- Original
++++ New
+@@ @@
+     }
+     private function prepareGame() : void
+     {
+-        $botInitialCoordinate = new Coordinate(1, 3);
++        $botInitialCoordinate = new Coordinate(1, 4);
+         $playerInitialCoordinate = new Coordinate(3, 3);
+         $spiderWeb = new SpiderWeb();
+         $this->spiderWeb = $spiderWeb;
+
+
+9) /opt/project/src/SpiderGame.php:21    [M] IncrementInteger
+
+--- Original
++++ New
+@@ @@
+     private function prepareGame() : void
+     {
+         $botInitialCoordinate = new Coordinate(1, 3);
+-        $playerInitialCoordinate = new Coordinate(3, 3);
++        $playerInitialCoordinate = new Coordinate(3, 4);
+         $spiderWeb = new SpiderWeb();
+         $this->spiderWeb = $spiderWeb;
+         $this->spiderBot = new Spider($spiderWeb, $botInitialCoordinate);
+
+
+10) /opt/project/src/SpiderGame.php:21    [M] DecrementInteger
+
+--- Original
++++ New
+@@ @@
+     private function prepareGame() : void
+     {
+         $botInitialCoordinate = new Coordinate(1, 3);
+-        $playerInitialCoordinate = new Coordinate(3, 3);
++        $playerInitialCoordinate = new Coordinate(2, 3);
+         $spiderWeb = new SpiderWeb();
+         $this->spiderWeb = $spiderWeb;
+         $this->spiderBot = new Spider($spiderWeb, $botInitialCoordinate);
+
+
+11) /opt/project/src/SpiderGame.php:21    [M] DecrementInteger
+
+--- Original
++++ New
+@@ @@
+     private function prepareGame() : void
+     {
+         $botInitialCoordinate = new Coordinate(1, 3);
+-        $playerInitialCoordinate = new Coordinate(3, 3);
++        $playerInitialCoordinate = new Coordinate(3, 2);
+         $spiderWeb = new SpiderWeb();
+         $this->spiderWeb = $spiderWeb;
+         $this->spiderBot = new Spider($spiderWeb, $botInitialCoordinate);
+
+
+12) /opt/project/src/SpiderGame.php:21    [M] IncrementInteger
+
+--- Original
++++ New
+@@ @@
+     private function prepareGame() : void
+     {
+         $botInitialCoordinate = new Coordinate(1, 3);
+-        $playerInitialCoordinate = new Coordinate(3, 3);
++        $playerInitialCoordinate = new Coordinate(4, 3);
+         $spiderWeb = new SpiderWeb();
+         $this->spiderWeb = $spiderWeb;
+         $this->spiderBot = new Spider($spiderWeb, $botInitialCoordinate);
+
+
+13) /opt/project/src/SpiderGame.php:47    [M] DecrementInteger
+
+--- Original
++++ New
+@@ @@
+     }
+     public function play()
+     {
+-        $currentTurn = 0;
++        $currentTurn = -1;
+         do {
+             $currentTurn++;
+             $movementDistance = $this->botDistanceByMovement();
+
+
+14) /opt/project/src/SpiderGame.php:48    [M] DoWhile
+
+--- Original
++++ New
+@@ @@
+             printf('Turno actual: ' . $currentTurn . PHP_EOL);
+             printf($this->spiderWeb->show($this->spiderPlayer->position(), $this->spiderBot->position()));
+             $this->playerMovement();
+-        } while (!$this->isGameFinish($this->spiderBot->position(), $this->spiderPlayer->position(), $currentTurn));
++        } while (false);
+         return 'The game is finish';
+     }
+     private function bestMovementByDistance(array $movementDistance) : string
+
+
+15) /opt/project/src/SpiderGame.php:52    [M] MethodCallRemoval
+
+--- Original
++++ New
+@@ @@
+         do {
+             $currentTurn++;
+             $movementDistance = $this->botDistanceByMovement();
+-            $this->spiderBot->move($this->bestMovementByDistance($movementDistance));
++            
+             printf('Turno actual: ' . $currentTurn . PHP_EOL);
+             printf($this->spiderWeb->show($this->spiderPlayer->position(), $this->spiderBot->position()));
+             $this->playerMovement();
+
+
+16) /opt/project/src/SpiderGame.php:54    [M] ConcatOperandRemoval
+
+--- Original
++++ New
+@@ @@
+             $currentTurn++;
+             $movementDistance = $this->botDistanceByMovement();
+             $this->spiderBot->move($this->bestMovementByDistance($movementDistance));
+-            printf('Turno actual: ' . $currentTurn . PHP_EOL);
++            printf('Turno actual: ' . $currentTurn);
+             printf($this->spiderWeb->show($this->spiderPlayer->position(), $this->spiderBot->position()));
+             $this->playerMovement();
+         } while (!$this->isGameFinish($this->spiderBot->position(), $this->spiderPlayer->position(), $currentTurn));
+
+
+17) /opt/project/src/SpiderGame.php:54    [M] FunctionCallRemoval
+
+--- Original
++++ New
+@@ @@
+             $currentTurn++;
+             $movementDistance = $this->botDistanceByMovement();
+             $this->spiderBot->move($this->bestMovementByDistance($movementDistance));
+-            printf('Turno actual: ' . $currentTurn . PHP_EOL);
++            
+             printf($this->spiderWeb->show($this->spiderPlayer->position(), $this->spiderBot->position()));
+             $this->playerMovement();
+         } while (!$this->isGameFinish($this->spiderBot->position(), $this->spiderPlayer->position(), $currentTurn));
+
+
+18) /opt/project/src/SpiderGame.php:54    [M] ConcatOperandRemoval
+
+--- Original
++++ New
+@@ @@
+             $currentTurn++;
+             $movementDistance = $this->botDistanceByMovement();
+             $this->spiderBot->move($this->bestMovementByDistance($movementDistance));
+-            printf('Turno actual: ' . $currentTurn . PHP_EOL);
++            printf($currentTurn . PHP_EOL);
+             printf($this->spiderWeb->show($this->spiderPlayer->position(), $this->spiderBot->position()));
+             $this->playerMovement();
+         } while (!$this->isGameFinish($this->spiderBot->position(), $this->spiderPlayer->position(), $currentTurn));
+
+
+19) /opt/project/src/SpiderGame.php:54    [M] Concat
+
+--- Original
++++ New
+@@ @@
+             $currentTurn++;
+             $movementDistance = $this->botDistanceByMovement();
+             $this->spiderBot->move($this->bestMovementByDistance($movementDistance));
+-            printf('Turno actual: ' . $currentTurn . PHP_EOL);
++            printf('Turno actual: ' . PHP_EOL . $currentTurn);
+             printf($this->spiderWeb->show($this->spiderPlayer->position(), $this->spiderBot->position()));
+             $this->playerMovement();
+         } while (!$this->isGameFinish($this->spiderBot->position(), $this->spiderPlayer->position(), $currentTurn));
+
+
+20) /opt/project/src/SpiderGame.php:54    [M] ConcatOperandRemoval
+
+--- Original
++++ New
+@@ @@
+             $currentTurn++;
+             $movementDistance = $this->botDistanceByMovement();
+             $this->spiderBot->move($this->bestMovementByDistance($movementDistance));
+-            printf('Turno actual: ' . $currentTurn . PHP_EOL);
++            printf('Turno actual: ' . PHP_EOL);
+             printf($this->spiderWeb->show($this->spiderPlayer->position(), $this->spiderBot->position()));
+             $this->playerMovement();
+         } while (!$this->isGameFinish($this->spiderBot->position(), $this->spiderPlayer->position(), $currentTurn));
+
+
+21) /opt/project/src/SpiderGame.php:54    [M] Concat
+
+--- Original
++++ New
+@@ @@
+             $currentTurn++;
+             $movementDistance = $this->botDistanceByMovement();
+             $this->spiderBot->move($this->bestMovementByDistance($movementDistance));
+-            printf('Turno actual: ' . $currentTurn . PHP_EOL);
++            printf($currentTurn . 'Turno actual: ' . PHP_EOL);
+             printf($this->spiderWeb->show($this->spiderPlayer->position(), $this->spiderBot->position()));
+             $this->playerMovement();
+         } while (!$this->isGameFinish($this->spiderBot->position(), $this->spiderPlayer->position(), $currentTurn));
+
+
+22) /opt/project/src/SpiderGame.php:55    [M] FunctionCallRemoval
+
+--- Original
++++ New
+@@ @@
+             $movementDistance = $this->botDistanceByMovement();
+             $this->spiderBot->move($this->bestMovementByDistance($movementDistance));
+             printf('Turno actual: ' . $currentTurn . PHP_EOL);
+-            printf($this->spiderWeb->show($this->spiderPlayer->position(), $this->spiderBot->position()));
++            
+             $this->playerMovement();
+         } while (!$this->isGameFinish($this->spiderBot->position(), $this->spiderPlayer->position(), $currentTurn));
+         return 'The game is finish';
+
+
+23) /opt/project/src/SpiderGame.php:57    [M] MethodCallRemoval
+
+--- Original
++++ New
+@@ @@
+             $this->spiderBot->move($this->bestMovementByDistance($movementDistance));
+             printf('Turno actual: ' . $currentTurn . PHP_EOL);
+             printf($this->spiderWeb->show($this->spiderPlayer->position(), $this->spiderBot->position()));
+-            $this->playerMovement();
++            
+         } while (!$this->isGameFinish($this->spiderBot->position(), $this->spiderPlayer->position(), $currentTurn));
+         return 'The game is finish';
+     }
+
+
+24) /opt/project/src/SpiderGame.php:59    [M] LogicalNot
+
+--- Original
++++ New
+@@ @@
+             printf('Turno actual: ' . $currentTurn . PHP_EOL);
+             printf($this->spiderWeb->show($this->spiderPlayer->position(), $this->spiderBot->position()));
+             $this->playerMovement();
+-        } while (!$this->isGameFinish($this->spiderBot->position(), $this->spiderPlayer->position(), $currentTurn));
++        } while ($this->isGameFinish($this->spiderBot->position(), $this->spiderPlayer->position(), $currentTurn));
+         return 'The game is finish';
+     }
+     private function bestMovementByDistance(array $movementDistance) : string
+
+
+25) /opt/project/src/SpiderGame.php:66    [M] FunctionCallRemoval
+
+--- Original
++++ New
+@@ @@
+     }
+     private function bestMovementByDistance(array $movementDistance) : string
+     {
+-        arsort($movementDistance);
++        
+         return array_key_first($movementDistance);
+     }
+     private function botDistanceByMovement() : array
+
+
+26) /opt/project/src/SpiderGame.php:77    [M] ArrayOneItem
+
+--- Original
++++ New
+@@ @@
+         foreach ($validMovement as $move => $validCoordinate) {
+             $movementDistance[$move] = $validCoordinate->distance($this->spiderPlayer->position());
+         }
+-        return $movementDistance;
++        return count($movementDistance) > 1 ? array_slice($movementDistance, 0, 1, true) : $movementDistance;
+     }
+     private function playerMovement() : void
+     {
+
+
+27) /opt/project/src/SpiderGame.php:82    [M] DoWhile
+
+--- Original
++++ New
+@@ @@
+             } catch (\Exception $e) {
+                 printf($e->getMessage() . PHP_EOL);
+             }
+-        } while ($movementMade === false);
++        } while (false);
+     }
+ }
+
+
+28) /opt/project/src/SpiderGame.php:83    [M] FalseValue
+
+--- Original
++++ New
+@@ @@
+     private function playerMovement() : void
+     {
+         do {
+-            $movementMade = false;
++            $movementMade = true;
+             $movement = readline('Ingresa movimiento (W, A, S, D): ');
+             try {
+                 $this->spiderPlayer->move($movement);
+
+
+29) /opt/project/src/SpiderGame.php:86    [M] MethodCallRemoval
+
+--- Original
++++ New
+@@ @@
+             $movementMade = false;
+             $movement = readline('Ingresa movimiento (W, A, S, D): ');
+             try {
+-                $this->spiderPlayer->move($movement);
++                
+                 $movementMade = true;
+             } catch (\Exception $e) {
+                 printf($e->getMessage() . PHP_EOL);
+
+
+30) /opt/project/src/SpiderWeb.php:37    [M] LessThan
+
+--- Original
++++ New
+@@ @@
+     }
+     private static function exceedHeightLimit(int $height) : void
+     {
+-        if ($height > self::MAX_HEIGHT || $height < self::MIN_HEIGHT) {
++        if ($height > self::MAX_HEIGHT || $height <= self::MIN_HEIGHT) {
+             throw new \InvalidArgumentException('Spider can not move to this coordinate');
+         }
+     }
+
+
+Timed Out mutants:
+==================
+
+1) /opt/project/src/SpiderGame.php:49    [M] Increment
+
+--- Original
++++ New
+@@ @@
+     {
+         $currentTurn = 0;
+         do {
+-            $currentTurn++;
++            $currentTurn--;
+             $movementDistance = $this->botDistanceByMovement();
+             $this->spiderBot->move($this->bestMovementByDistance($movementDistance));
+             printf('Turno actual: ' . $currentTurn . PHP_EOL);
+
+
+2) /opt/project/src/SpiderGame.php:87    [M] TrueValue
+
+--- Original
++++ New
+@@ @@
+             $movement = readline('Ingresa movimiento (W, A, S, D): ');
+             try {
+                 $this->spiderPlayer->move($movement);
+-                $movementMade = true;
++                $movementMade = false;
+             } catch (\Exception $e) {
+                 printf($e->getMessage() . PHP_EOL);
+             }
+
+
+3) /opt/project/src/SpiderGame.php:92    [M] FalseValue
+
+--- Original
++++ New
+@@ @@
+             } catch (\Exception $e) {
+                 printf($e->getMessage() . PHP_EOL);
+             }
+-        } while ($movementMade === false);
++        } while ($movementMade === true);
+     }
+ }
+
+
+4) /opt/project/src/SpiderGame.php:92    [M] Identical
+
+--- Original
++++ New
+@@ @@
+             } catch (\Exception $e) {
+                 printf($e->getMessage() . PHP_EOL);
+             }
+-        } while ($movementMade === false);
++        } while ($movementMade !== false);
+     }
+ }
+
+
+5) /opt/project/src/SpiderWeb.php:63    [M] Decrement
+
+--- Original
++++ New
+@@ @@
+     public function show(Coordinate $playerCoordinate, Coordinate $botCoordinate) : string
+     {
+         $gameMap = '';
+-        for ($height = self::MAX_HEIGHT; $height >= self::MIN_HEIGHT; $height--) {
++        for ($height = self::MAX_HEIGHT; $height >= self::MIN_HEIGHT; $height++) {
+             $gameMap .= $this->createHorizontalMovement($playerCoordinate, $botCoordinate, $height);
+             if ($height > self::MIN_HEIGHT) {
+                 $gameMap .= "\n" . $this->createVerticalMovement();
+
+
+6) /opt/project/src/SpiderWeb.php:85    [M] Increment
+
+--- Original
++++ New
+@@ @@
+     private function createHorizontalMovement(Coordinate $playerCoordinate, Coordinate $botCoordinate, int $height) : string
+     {
+         $horizontalMovement = '';
+-        for ($width = self::MIN_WITDH; $width <= self::MAX_WITDH; $width++) {
++        for ($width = self::MIN_WITDH; $width <= self::MAX_WITDH; $width--) {
+             if ($playerCoordinate->equals(new Coordinate($width, $height))) {
+                 $horizontalMovement .= 'P';
+             } else {
+
+
+Skipped mutants:
+================
+
+Not Covered mutants:
+====================
+
+1) /opt/project/src/SpiderGame.php:89    [M] Concat
+
+--- Original
++++ New
+@@ @@
+                 $this->spiderPlayer->move($movement);
+                 $movementMade = true;
+             } catch (\Exception $e) {
+-                printf($e->getMessage() . PHP_EOL);
++                printf(PHP_EOL . $e->getMessage());
+             }
+         } while ($movementMade === false);
+     }
+ }
+
+
+2) /opt/project/src/SpiderGame.php:89    [M] ConcatOperandRemoval
+
+--- Original
++++ New
+@@ @@
+                 $this->spiderPlayer->move($movement);
+                 $movementMade = true;
+             } catch (\Exception $e) {
+-                printf($e->getMessage() . PHP_EOL);
++                printf(PHP_EOL);
+             }
+         } while ($movementMade === false);
+     }
+ }
+
+
+3) /opt/project/src/SpiderGame.php:89    [M] ConcatOperandRemoval
+
+--- Original
++++ New
+@@ @@
+                 $this->spiderPlayer->move($movement);
+                 $movementMade = true;
+             } catch (\Exception $e) {
+-                printf($e->getMessage() . PHP_EOL);
++                printf($e->getMessage());
+             }
+         } while ($movementMade === false);
+     }
+ }
+
+
+4) /opt/project/src/SpiderGame.php:89    [M] FunctionCallRemoval
+
+--- Original
++++ New
+@@ @@
+                 $this->spiderPlayer->move($movement);
+                 $movementMade = true;
+             } catch (\Exception $e) {
+-                printf($e->getMessage() . PHP_EOL);
++                
+             }
+         } while ($movementMade === false);
+     }
+ }
