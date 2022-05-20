@@ -21,8 +21,12 @@ class Spider
         $x = $this->coordinate->x();
         $y = $this->coordinate->y();
 
-        if ($direction === 'W') {
+        $direction = strtolower($direction);
+
+        if ($direction === 'w') {
             $y += 1;
+        } else if ($direction === 's') {
+            $y -= 1;
         } else {
             $x += 1;
         }
