@@ -24,7 +24,7 @@ class Coordinate
         return $this->y;
     }
 
-    public function equals(Coordinate $coordinate): int
+    public function equals(Coordinate $coordinate): bool
     {
         return $this->x === $coordinate->x() && $this->y === $coordinate->y();
     }

@@ -20,11 +20,11 @@ class SpiderGame
     public function play(): string
     {
 
-        if ($this->spiderPlayer->coordinate()->equals($this->spiderBot->coordinate())) {
+        if ($this->isSpiderCatches()) {
             return "win!!";
         }
 
-        if ($this->turn->show() === self::MAX_TURN) {
+        if ($this->isLastTurn()) {
             return "You Lose :(";
         }
 
@@ -35,5 +35,15 @@ class SpiderGame
     {
         return "Player (x, y): (" . $this->spiderPlayer->coordinate()->x() . ", " . $this->spiderPlayer->coordinate()->y() . ")" .
             " - Bot (x, y): (" . $this->spiderBot->coordinate()->x() . ", " . $this->spiderBot->coordinate()->y() . ")";
+    }
+
+    private function isLastTurn(): bool
+    {
+        return $this->turn->show() === self::MAX_TURN;
+    }
+
+    private function isSpiderCatches(): int
+    {
+        return $this->spiderPlayer->coordinate()->equals($this->spiderBot->coordinate());
     }
 }
