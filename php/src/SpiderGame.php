@@ -4,7 +4,7 @@ namespace SpiderKata;
 
 class SpiderGame
 {
-    private Spider $spiderPlayer;
+    protected Spider $spiderPlayer;
     private Spider $spiderBot;
     protected Turn $turn;
 
@@ -19,6 +19,7 @@ class SpiderGame
 
     public function play(): string
     {
+        $this->playerMovement();
 
         if ($this->isSpiderCatches()) {
             return "win!!";
@@ -45,5 +46,11 @@ class SpiderGame
     private function isSpiderCatches(): int
     {
         return $this->spiderPlayer->coordinate()->equals($this->spiderBot->coordinate());
+    }
+
+    protected function playerMovement(): void
+    {
+        $movement = readline('Insert movement (W, A, S, D): ');
+        $this->spiderPlayer->move($movement);
     }
 }

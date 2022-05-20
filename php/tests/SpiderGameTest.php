@@ -25,7 +25,7 @@ class SpiderGameTest extends TestCase
             ->willReturn($coordinate);
 
         $spiderWeb = new SpiderWeb();
-        $spiderGame = new SpiderGame($spider, $spiderBot, $spiderWeb);
+        $spiderGame = new TestingSpiderGame($spider, $spiderBot, $spiderWeb);
 
         $this->assertSame('win!!', $spiderGame->play());
     }
@@ -45,7 +45,7 @@ class SpiderGameTest extends TestCase
             ->willReturn($coordinateBot);
 
         $spiderWeb = new SpiderWeb();
-        $spiderGame = new SpiderGame($spider, $spiderBot, $spiderWeb);
+        $spiderGame = new TestingSpiderGame($spider, $spiderBot, $spiderWeb);
 
         $this->assertNotSame('win!!', $spiderGame->play());
     }
@@ -65,7 +65,7 @@ class SpiderGameTest extends TestCase
             ->willReturn($coordinateBot);
 
         $spiderWeb = new SpiderWeb();
-        $spiderGame = new SpiderGame($spider, $spiderBot, $spiderWeb);
+        $spiderGame = new TestingSpiderGame($spider, $spiderBot, $spiderWeb);
 
         $this->assertSame('Player (x, y): (0, 0) - Bot (x, y): (1, 0)', $spiderGame->play());
     }
@@ -89,5 +89,23 @@ class SpiderGameTest extends TestCase
         $spiderGame->jumpToLastTurn();
 
         $this->assertSame('You Lose :(', $spiderGame->play());
+    }
+
+    /** @test */
+    public function should_spider_move_once_per_turn()
+    {
+        $coordinatePlayer = new Coordinate(0,0);
+        $coordinateBot = new Coordinate(1,0);
+
+        $spider = new Spider($coordinatePlayer);
+
+        $spiderBot = $this->createMock(Spider::class);
+        $spiderBot->method('coordinate')
+            ->willReturn($coordinateBot);
+
+        $spiderWeb = new SpiderWeb();
+        $spiderGame = new TestingSpiderGame($spider, $spiderBot, $spiderWeb);
+
+        $this->assertSame('Player (x, y): (0, 1) - Bot (x, y): (1, 0)', $spiderGame->play());
     }
 }

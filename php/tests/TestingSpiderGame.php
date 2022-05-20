@@ -11,4 +11,10 @@ class TestingSpiderGame extends SpiderGame
     {
         $this->turn = new Turn(self::MAX_TURN);
     }
+
+    protected function playerMovement(): void
+    {
+        $movement = 'W';
+        $this->spiderPlayer->move($movement);
+    }
 }
