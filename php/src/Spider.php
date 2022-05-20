@@ -18,6 +18,10 @@ class Spider
 
     public function move(string $direction): void
     {
-        $this->coordinate = new Coordinate($this->coordinate->x(), $this->coordinate->y() + 1);
+        if ($direction === 'W') {
+            $this->coordinate = new Coordinate($this->coordinate->x(), $this->coordinate->y() + 1);
+        } else {
+            $this->coordinate = new Coordinate($this->coordinate->x() + 1, $this->coordinate->y());
+        }
     }
 }
