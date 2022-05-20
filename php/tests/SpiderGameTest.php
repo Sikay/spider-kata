@@ -11,63 +11,46 @@ use SpiderKata\Turn;
 
 class SpiderGameTest extends TestCase
 {
-    /** @test */
-    public function should_win_when_spider_take_the_spider_bot()
+
+    private Spider $spiderPlayer;
+    private Spider $spiderBot;
+    private SpiderWeb $spiderWeb;
+    private SpiderGame $spiderGame;
+
+    public function setUp(): void
     {
-        $coordinate = new Coordinate(0,0);
-
-        $spider = $this->createMock(Spider::class);
-        $spider->method('coordinate')
-            ->willReturn($coordinate);
-
-        $spiderBot = $this->createMock(Spider::class);
-        $spiderBot->method('coordinate')
-            ->willReturn($coordinate);
-
-        $spiderWeb = new SpiderWeb();
-        $spiderGame = new TestingSpiderGame($spider, $spiderBot, $spiderWeb);
-
-        $this->assertSame('win!!', $spiderGame->play());
+        $this->spiderPlayer = $this->createMock(Spider::class);
+        $this->spiderBot = $this->createMock(Spider::class);
+        $this->spiderWeb = new SpiderWeb();
+        $this->spiderGame = new TestingSpiderGame($this->spiderPlayer, $this->spiderBot, $this->spiderWeb);
     }
 
-    /** @test */
-    public function should_not_win_when_spider_not_take_the_spider_bot()
+    public function dataProvider(): iterable
     {
-        $coordinatePlayer = new Coordinate(0,0);
-        $coordinateBot = new Coordinate(1,0);
-
-        $spider = $this->createMock(Spider::class);
-        $spider->method('coordinate')
-            ->willReturn($coordinatePlayer);
-
-        $spiderBot = $this->createMock(Spider::class);
-        $spiderBot->method('coordinate')
-            ->willReturn($coordinateBot);
-
-        $spiderWeb = new SpiderWeb();
-        $spiderGame = new TestingSpiderGame($spider, $spiderBot, $spiderWeb);
-
-        $this->assertNotSame('win!!', $spiderGame->play());
+        yield "should_win_when_spider_take_the_spider_bot" => [
+            new Coordinate(0,0),
+            new Coordinate(0,0),
+            'win!!'
+        ];
+        yield "should_view_both_spiders_positions_when_not_win" => [
+            new Coordinate(0,0),
+            new Coordinate(1,0),
+            'Player (x, y): (0, 0) - Bot (x, y): (1, 0)'
+        ];
     }
 
-    /** @test */
-    public function should_view_both_spiders_positions_when_not_win()
+    /**
+     * @test
+     * @dataProvider dataProvider
+     */
+    public function should_return_the_expected_output(Coordinate $coordinatePlayer, Coordinate $coordinateBot, string $expected): void
     {
-        $coordinatePlayer = new Coordinate(0,0);
-        $coordinateBot = new Coordinate(1,0);
-
-        $spider = $this->createMock(Spider::class);
-        $spider->method('coordinate')
+        $this->spiderPlayer->method('coordinate')
             ->willReturn($coordinatePlayer);
-
-        $spiderBot = $this->createMock(Spider::class);
-        $spiderBot->method('coordinate')
+        $this->spiderBot->method('coordinate')
             ->willReturn($coordinateBot);
 
-        $spiderWeb = new SpiderWeb();
-        $spiderGame = new TestingSpiderGame($spider, $spiderBot, $spiderWeb);
-
-        $this->assertSame('Player (x, y): (0, 0) - Bot (x, y): (1, 0)', $spiderGame->play());
+        $this->assertSame($expected, $this->spiderGame->play());
     }
 
     /** @test */
@@ -76,19 +59,14 @@ class SpiderGameTest extends TestCase
         $coordinatePlayer = new Coordinate(0,0);
         $coordinateBot = new Coordinate(1,0);
 
-        $spider = $this->createMock(Spider::class);
-        $spider->method('coordinate')
+        $this->spiderPlayer->method('coordinate')
             ->willReturn($coordinatePlayer);
-
-        $spiderBot = $this->createMock(Spider::class);
-        $spiderBot->method('coordinate')
+        $this->spiderBot->method('coordinate')
             ->willReturn($coordinateBot);
 
-        $spiderWeb = new SpiderWeb();
-        $spiderGame = new TestingSpiderGame($spider, $spiderBot, $spiderWeb);
-        $spiderGame->jumpToLastTurn();
+        $this->spiderGame->jumpToLastTurn();
 
-        $this->assertSame('You Lose :(', $spiderGame->play());
+        $this->assertSame('You Lose :(', $this->spiderGame->play());
     }
 
     /** @test */
@@ -97,14 +75,12 @@ class SpiderGameTest extends TestCase
         $coordinatePlayer = new Coordinate(0,0);
         $coordinateBot = new Coordinate(1,0);
 
-        $spider = new Spider($coordinatePlayer);
-
-        $spiderBot = $this->createMock(Spider::class);
-        $spiderBot->method('coordinate')
+        $spiderPlayer = new Spider($coordinatePlayer);
+;
+        $this->spiderBot->method('coordinate')
             ->willReturn($coordinateBot);
 
-        $spiderWeb = new SpiderWeb();
-        $spiderGame = new TestingSpiderGame($spider, $spiderBot, $spiderWeb);
+        $spiderGame = new TestingSpiderGame($spiderPlayer, $this->spiderBot, $this->spiderWeb);
 
         $this->assertSame('Player (x, y): (0, 1) - Bot (x, y): (1, 0)', $spiderGame->play());
     }
