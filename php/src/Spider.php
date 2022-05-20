@@ -25,9 +25,13 @@ class Spider
 
         if ($direction === 'w') {
             $y += 1;
-        } else if ($direction === 's') {
+        }
+
+        if ($direction === 's') {
             $y -= 1;
-        } else {
+        }
+
+        if ($direction === 'd') {
             $x += 1;
         }
 
