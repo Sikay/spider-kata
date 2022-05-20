@@ -35,6 +35,10 @@ class Spider
             $x += 1;
         }
 
+        if ($direction === 'a') {
+            $x -= 1;
+        }
+
         $this->coordinate = new Coordinate($x, $y);
     }
 }

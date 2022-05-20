@@ -37,4 +37,14 @@ class SpiderTest extends TestCase
         $spider->move('S');
         self::assertTrue($spider->coordinate()->equals($destinationCoordinate));
     }
+
+    /** @test */
+    public function should_move_left_given_A()
+    {
+        $destinationCoordinate = new Coordinate(0,1);
+        $coordinate = new Coordinate(1,1);
+        $spider = new Spider($coordinate);
+        $spider->move('a');
+        self::assertTrue($spider->coordinate()->equals($destinationCoordinate));
+    }
 }
