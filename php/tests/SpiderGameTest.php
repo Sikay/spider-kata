@@ -7,6 +7,7 @@ use SpiderKata\Spider;
 use SpiderKata\SpiderWeb;
 use SpiderKata\SpiderGame;
 use PHPUnit\Framework\TestCase;
+use SpiderKata\Turn;
 
 class SpiderGameTest extends TestCase
 {
@@ -67,5 +68,26 @@ class SpiderGameTest extends TestCase
         $spiderGame = new SpiderGame($spider, $spiderBot, $spiderWeb);
 
         $this->assertSame('Player (x, y): (0, 0) - Bot (x, y): (1, 0)', $spiderGame->play());
+    }
+
+    /** @test */
+    public function should_lose_when_last_turn_passed_and_no_take_spider()
+    {
+        $coordinatePlayer = new Coordinate(0,0);
+        $coordinateBot = new Coordinate(1,0);
+
+        $spider = $this->createMock(Spider::class);
+        $spider->method('coordinate')
+            ->willReturn($coordinatePlayer);
+
+        $spiderBot = $this->createMock(Spider::class);
+        $spiderBot->method('coordinate')
+            ->willReturn($coordinateBot);
+
+        $spiderWeb = new SpiderWeb();
+        $spiderGame = new TestingSpiderGame($spider, $spiderBot, $spiderWeb);
+        $spiderGame->jumpToLastTurn();
+
+        $this->assertSame('You Lose :(', $spiderGame->play());
     }
 }
