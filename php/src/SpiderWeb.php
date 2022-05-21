@@ -11,7 +11,7 @@ class SpiderWeb
 
     public function nextCoordinate(Coordinate $coordinate): Coordinate
     {
-        if ($coordinate->x() > 4) {
+        if ($coordinate->x() > 4 || $coordinate->y() > 4) {
             throw new \InvalidArgumentException();
         }
 
