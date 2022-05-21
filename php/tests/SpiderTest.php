@@ -64,4 +64,24 @@ class SpiderTest extends TestCase
         $spider = new Spider($coordinate);
         $spider->move('w', $spiderWeb);
     }
+
+    /** @test */
+    public function should_can_not_move_out_of_spider_web_down_limits()
+    {
+        self::expectException(\InvalidArgumentException::class);
+        $spiderWeb = new SpiderWeb();
+        $coordinate = new Coordinate(0,0);
+        $spider = new Spider($coordinate);
+        $spider->move('s', $spiderWeb);
+    }
+
+    /** @test */
+    public function should_can_not_move_out_of_spider_web_left_limits()
+    {
+        self::expectException(\InvalidArgumentException::class);
+        $spiderWeb = new SpiderWeb();
+        $coordinate = new Coordinate(0,0);
+        $spider = new Spider($coordinate);
+        $spider->move('a', $spiderWeb);
+    }
 }
