@@ -9,48 +9,40 @@ use SpiderKata\SpiderWeb;
 
 class SpiderTest extends TestCase
 {
-    /** @test */
-    public function should_move_up_given_W()
+    public function moveProvider(): iterable
     {
-        $spiderWeb = new SpiderWeb();
-        $destinationCoordinate = new Coordinate(0,1);
-        $coordinate = new Coordinate(0,0);
-        $spider = new Spider($coordinate);
-        $spider->move('W', $spiderWeb);
-        self::assertTrue($spider->coordinate()->equals($destinationCoordinate));
+        yield "should_move_up_given_W" => [
+            'W',
+            new Coordinate(0,0),
+            new Coordinate(0,1)
+        ];
+        yield "should_move_right_given_D" => [
+            'D',
+            new Coordinate(0,0),
+            new Coordinate(1,0)
+        ];
+        yield "should_move_down_given_S" => [
+            'S',
+            new Coordinate(1,1),
+            new Coordinate(1,0)
+        ];
+        yield "should_move_left_given_A" => [
+            'a',
+            new Coordinate(1,1),
+            new Coordinate(0,1)
+        ];
     }
 
-    /** @test */
-    public function should_move_right_given_D()
+    /**
+     * @test
+     * @dataProvider moveProvider
+     */
+    public function should_move_to_right_place_given_command(string $moveCommand, Coordinate $startCoordinate, Coordinate $expectedCoordinate)
     {
         $spiderWeb = new SpiderWeb();
-        $destinationCoordinate = new Coordinate(1,0);
-        $coordinate = new Coordinate(0,0);
-        $spider = new Spider($coordinate);
-        $spider->move('D', $spiderWeb);
-        self::assertTrue($spider->coordinate()->equals($destinationCoordinate));
-    }
-
-    /** @test */
-    public function should_move_down_given_S()
-    {
-        $spiderWeb = new SpiderWeb();
-        $destinationCoordinate = new Coordinate(1,0);
-        $coordinate = new Coordinate(1,1);
-        $spider = new Spider($coordinate);
-        $spider->move('S', $spiderWeb);
-        self::assertTrue($spider->coordinate()->equals($destinationCoordinate));
-    }
-
-    /** @test */
-    public function should_move_left_given_A()
-    {
-        $spiderWeb = new SpiderWeb();
-        $destinationCoordinate = new Coordinate(0,1);
-        $coordinate = new Coordinate(1,1);
-        $spider = new Spider($coordinate);
-        $spider->move('a', $spiderWeb);
-        self::assertTrue($spider->coordinate()->equals($destinationCoordinate));
+        $spider = new Spider($startCoordinate);
+        $spider->move($moveCommand, $spiderWeb);
+        self::assertTrue($spider->coordinate()->equals($expectedCoordinate));
     }
 
     /** @test */
