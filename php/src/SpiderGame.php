@@ -6,6 +6,7 @@ class SpiderGame
 {
     protected Spider $spiderPlayer;
     private Spider $spiderBot;
+    protected SpiderWeb $spiderWeb;
     protected Turn $turn;
 
     protected const MAX_TURN = 10;
@@ -14,6 +15,7 @@ class SpiderGame
     {
         $this->spiderPlayer = $spiderPlayer;
         $this->spiderBot = $spiderBot;
+        $this->spiderWeb = $spiderWeb;
         $this->turn = new Turn(1);
     }
 
@@ -51,6 +53,6 @@ class SpiderGame
     protected function playerMovement(): void
     {
         $movement = readline('Insert movement (W, A, S, D): ');
-        $this->spiderPlayer->move($movement);
+        $this->spiderPlayer->move($movement, $this->spiderWeb);
     }
 }

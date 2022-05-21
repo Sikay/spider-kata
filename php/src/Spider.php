@@ -16,7 +16,7 @@ class Spider
         return $this->coordinate;
     }
 
-    public function move(string $direction): void
+    public function move(string $direction, SpiderWeb $spiderWeb): void
     {
         $x = $this->coordinate->x();
         $y = $this->coordinate->y();
@@ -39,6 +39,6 @@ class Spider
             $x -= 1;
         }
 
-        $this->coordinate = new Coordinate($x, $y);
+        $this->coordinate = $spiderWeb->nextCoordinate(new Coordinate($x, $y));
     }
 }

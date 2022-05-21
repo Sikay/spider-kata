@@ -15,6 +15,6 @@ class TestingSpiderGame extends SpiderGame
     protected function playerMovement(): void
     {
         $movement = 'W';
-        $this->spiderPlayer->move($movement);
+        $this->spiderPlayer->move($movement, $this->spiderWeb);
     }
 }
