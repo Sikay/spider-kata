@@ -45,43 +45,36 @@ class SpiderTest extends TestCase
         self::assertTrue($spider->coordinate()->equals($expectedCoordinate));
     }
 
-    /** @test */
-    public function should_can_not_move_out_of_spider_web_limits()
+    public function outOfLimitProvider(): iterable
     {
-        self::expectException(\InvalidArgumentException::class);
-        $spiderWeb = new SpiderWeb();
-        $coordinate = new Coordinate(4,1);
-        $spider = new Spider($coordinate);
-        $spider->move('d', $spiderWeb);
+        yield "should_can_not_move_out_of_spider_web_right_limits" => [
+            'd',
+            new Coordinate(4,1)
+        ];
+        yield "should_can_not_move_out_of_spider_web_up_limits" => [
+            'w',
+            new Coordinate(4,4)
+        ];
+        yield "should_can_not_move_out_of_spider_web_down_limits" => [
+            's',
+            new Coordinate(0,0)
+        ];
+        yield "should_can_not_move_out_of_spider_web_left_limits" => [
+            'a',
+            new Coordinate(0,0)
+        ];
     }
 
-    /** @test */
-    public function should_can_not_move_out_of_spider_web_up_limits()
+    /**
+     * @test
+     * @dataProvider outOfLimitProvider
+     */
+    public function should_can_not_move_out_of_spider_web_limits(string $moveCommand, Coordinate $startCoordinate)
     {
         self::expectException(\InvalidArgumentException::class);
         $spiderWeb = new SpiderWeb();
-        $coordinate = new Coordinate(4,4);
-        $spider = new Spider($coordinate);
-        $spider->move('w', $spiderWeb);
+        $spider = new Spider($startCoordinate);
+        $spider->move($moveCommand, $spiderWeb);
     }
 
-    /** @test */
-    public function should_can_not_move_out_of_spider_web_down_limits()
-    {
-        self::expectException(\InvalidArgumentException::class);
-        $spiderWeb = new SpiderWeb();
-        $coordinate = new Coordinate(0,0);
-        $spider = new Spider($coordinate);
-        $spider->move('s', $spiderWeb);
-    }
-
-    /** @test */
-    public function should_can_not_move_out_of_spider_web_left_limits()
-    {
-        self::expectException(\InvalidArgumentException::class);
-        $spiderWeb = new SpiderWeb();
-        $coordinate = new Coordinate(0,0);
-        $spider = new Spider($coordinate);
-        $spider->move('a', $spiderWeb);
-    }
 }
